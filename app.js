@@ -138,8 +138,10 @@ var table = new Tabulator("#example-table", {
    getDate.addEventListener('click', (evt) => {
     let takeDateStart= document.getElementById("finicio").value
     let takeDateEnd = document.getElementById("ffin").value
+    let takeTimeStart = document.getElementById("hinicio").value
+    let takeTimeEnd = document.getElementById("hfin").value
     evt.preventDefault();
-    console.log(takeDateStart , takeDateEnd)
+    console.log(takeDateStart , takeDateEnd , takeTimeStart , takeTimeEnd)
    });
   
 
