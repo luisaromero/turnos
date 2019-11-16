@@ -1,179 +1,173 @@
-
 //Trae los empleados
 var results = $.ajax({
-    url: 'https://backendappapi.us-south.cf.appdomain.cloud/listaempleadosgts',
-    type: 'GET',
-    async: false,
-    dataType: 'json',
+  url: 'https://backendappapi.us-south.cf.appdomain.cloud/listaempleadosgts',
+  type: 'GET',
+  async: false,
+  dataType: 'json',
 }).responseJSON;
-        
 
-function getName(e,row) {
- console.log("results :", results);
- // ver de donde acamos esto
- //console.log("empleado",row.getData().T_NOM_EMPL); 
+
+function getName(e, row) {
+  console.log("results :", results);
+  // ver de donde acamos esto
+  let employed_name = row.getData().T_NOM_EMPL;
+  console.log("empleado", employed_name);
 }
 
-getName();
-//Muestra el detalle de los empleados en un modal
-function showInfo(e, row){
 
-    console.log("row",row);
-        $('#mtitle').html('<b>Detalles empleado: <i>' + row.getData().T_NOM_EMPL +'</i></b>');
-        console.log("row.getData()",row.getData());
-        var keys = Object.keys(row.getData());
-        var values = Object.values(row.getData());
-         console.log("values en  showInfo",values);
-        var text="";
-        for (var i=0; i< keys.length; i++){
-            if (keys[i]=="_children" || keys[i]=="id"){
-                continue;
-            }
-            
-            text += '<tr><th>'+keys[i]+':</th>'+
-                    '<td>'+values[i]+'</td></tr>';
-        }
-        
-        $('#mbody').html('<div class="table-responsive table-bordered"><table class="table table-striped"><tbody>'+text+'</tbody></table></div>');
-        $('#masInformacion').modal('show'); 
+//Muestra el detalle de los empleados en un modal
+function showInfo(e, row) {
+
+  console.log("row", row);
+  $('#mtitle').html('<b>Detalles empleado: <i>' + row.getData().T_NOM_EMPL + '</i></b>');
+  console.log("row.getData()", row.getData());
+  var keys = Object.keys(row.getData());
+  var values = Object.values(row.getData());
+  console.log("values en  showInfo", values);
+  var text = "";
+  for (var i = 0; i < keys.length; i++) {
+    if (keys[i] == "_children" || keys[i] == "id") {
+      continue;
+    }
+
+    text += '<tr><th>' + keys[i] + ':</th>' +
+      '<td>' + values[i] + '</td></tr>';
+  }
+
+  $('#mbody').html('<div class="table-responsive table-bordered"><table class="table table-striped"><tbody>' + text + '</tbody></table></div>');
+  $('#masInformacion').modal('show');
 }
 
 //Modifica modal de turnos
-function setTimes(e, cell){
-    var objData = cell.getData(); //Obtiene los datos de la celda
-    //console.log(objData.name);
-    
-    //Date
-    //INICIO: Esto no se usa, pero lo deje porque podria servir para despues
-    var curr = new Date; // get current date
-    var first = curr.getDate() - curr.getDay() +1; // First day is the day of the month - the day of the week
-    var last = first + 6; // last day is the first day + 6
-    
-    var firstday = new Date(curr.setDate(first)).toString();
-    var lastday = new Date(curr.setDate(last)).toString();
-    
-    console.log(firstday);
-    console.log(lastday);
-    //console.log("cell",cell.getValue() );
-    //cell.setValue(!cell.getValue());
-    //FIN
-    
-    //Modal
-    $('#masInformacion').modal('hide'); 
-    $('#ttitle').html('<b>Configuración turno empleado: <i>' + objData.T_NOM_EMPL +'</i></b>');
-    // $('#tfooter').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>'
-	// 			    +'<input type="submit"  class="btn btn-primary" value="Submit" >');    
+const setTimesDateAndTime = (e, cell) => {
 
-    $('#turnos').modal('show'); 
+  let wn = getName(e, cell);
+  var objData = cell.getData(); //Obtiene los datos de la celda
+  //console.log(objData.name);
+
+  //Date
+  //INICIO: Esto no se usa, pero lo deje porque podria servir para despues
+  var curr = new Date; // get current date
+  var first = curr.getDate() - curr.getDay() + 1; // First day is the day of the month - the day of the week
+  var last = first + 6; // last day is the first day + 6
+
+  var firstday = new Date(curr.setDate(first)).toString();
+  var lastday = new Date(curr.setDate(last)).toString();
+
+  console.log(firstday);
+  console.log(lastday);
+  //console.log("cell",cell.getValue() );
+  //cell.setValue(!cell.getValue());
+  //FIN
+
+  //Modal
+  $('#masInformacion').modal('hide');
+  $('#ttitle').html('<b>Configuración turno empleado: <i>' + objData.T_NOM_EMPL + '</i></b>');
+  // $('#tfooter').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>'
+  //   + '<input  type="submit" id="submit" class="btn btn-primary" value="Submit" >');
+
+  $('#turnos').modal('show');
+  return wn;
 }
 
 //Crea la tabla
 var table = new Tabulator("#example-table", {
-    height:"10%",
+  height: "10%",
 
-    layout:"fitColumns",
-    responsiveLayout:"hide",
-    data:results,
-    dataTree:true,
-    dataTreeStartExpanded:true,
-    
-    groupBy:"T_TOR_EMPL",
-    groupStartOpen:false,
+  layout: "fitColumns",
+  responsiveLayout: "hide",
+  data: results,
+  dataTree: true,
+  dataTreeStartExpanded: true,
 
-    columns:[
-        {title:"Nombre", field:"T_NOM_EMPL", responsive:0, cellClick:function(e,cell){showInfo(e,cell)}}, //never hide this column
-        {title:"Teléfono", field:"T_TEL_EMPL", cellClick:function(e,cell){showInfo(e,cell)}},
-        {title:"Correo", field:"T_CORREO_EMPL", width:300, cellClick:function(e,cell){showInfo(e,cell)}},
-        {title:"Turno", field:"TURNO", align: "center", formatter: "tickCross", responsive: 1, cellClick:function(e, cell){
-            setTimes(e,cell)
-        }},
-    ],
-    
+  groupBy: "T_TOR_EMPL",
+  groupStartOpen: false,
+
+  columns: [
+    { title: "Nombre", field: "T_NOM_EMPL", responsive: 0, cellClick: function (e, cell) { showInfo(e, cell) } }, //never hide this column
+    { title: "Teléfono", field: "T_TEL_EMPL", cellClick: function (e, cell) { showInfo(e, cell) } },
+    { title: "Correo", field: "T_CORREO_EMPL", width: 300, cellClick: function (e, cell) { showInfo(e, cell) } },
+
+    {
+      title: "Turno", field: "TURNO", align: "center", formatter: "tickCross", responsive: 1, cellClick: function (e, cell) {
+        setTimesDateAndTime(e, cell)
+      }
+    },
+  ],
+
 });
 
 
 
 // Copia el body del modal de los detalles del empleado
-  function copyToClipboard() {
-      
-    var $temp = $("<input>");
-    $("body").append($temp);
-    var tabla=$("#mbody")[0];
+function copyToClipboard() {
 
-    var leftColumn = tabla.getElementsByTagName("TH");
-    var rightColumn = tabla.getElementsByTagName("TD");
-    var text = "";
+  var $temp = $("<input>");
+  $("body").append($temp);
+  var tabla = $("#mbody")[0];
 
-    for (var i = 0; i < leftColumn.length; i++) {
-      text = text + leftColumn[i].innerHTML + " " + rightColumn[i].innerHTML +".   ";
+  var leftColumn = tabla.getElementsByTagName("TH");
+  var rightColumn = tabla.getElementsByTagName("TD");
+  var text = "";
+
+  for (var i = 0; i < leftColumn.length; i++) {
+    text = text + leftColumn[i].innerHTML + " " + rightColumn[i].innerHTML + ".   ";
+  }
+
+  $temp.val(text).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
+
+
+// Evento para lanzar copia a traves del modal
+$(function () {
+
+  $(document).on("click", "#copiar", function (event) {
+    copyToClipboard();
+  });
+});
+
+// Permite third-party libraries para bootstrap4
+$.fn.modal.Constructor.prototype._enforceFocus = function () { };
+
+
+
+
+let getDate = document.getElementById("submit");
+
+getDate.addEventListener('click', (evt) => {
+  evt.preventDefault();
+
+  let a = setTimesDateAndTime;
+
+  let takeDateStart = document.getElementById("finicio").value;
+  let takeDateEnd = document.getElementById("ffin").value;
+  let takeTimeStart = document.getElementById("hinicio").value;
+  let takeTimeEnd = document.getElementById("hfin").value;
+
+  let info_form = {
+    "T_NOM_EMPL": a,
+    "T_INICIO": takeDateStart,
+    "T_FIN": takeDateEnd,
+    "H_INICIO": takeTimeStart,
+    "H_FIN": takeTimeEnd
+  };
+
+
+  $.ajax({
+    type: "POST",
+    url: 'https://backendappapi.us-south.cf.appdomain.cloud/save',
+    data: info_form,
+    // dataType: dataType,
+    success: function (response) {
+      console(response);
     }
 
-    $temp.val(text).select();
-    document.execCommand("copy");
-    $temp.remove();
-  }
-  
-
-  // Evento para lanzar copia a traves del modal
-  $(function(){
-      
-    $(document).on("click", "#copiar", function(event){
-      copyToClipboard();
-    });
   });
 
-  // Permite third-party libraries para bootstrap4
-  $.fn.modal.Constructor.prototype._enforceFocus = function() {};
-  
-   let getDate = document.getElementById("submit");
-
-   getDate.addEventListener('click', (evt) => {
-    evt.preventDefault();
-
-    let takeDateStart= document.getElementById("finicio").value;
-    let takeDateEnd = document.getElementById("ffin").value;
-    let takeTimeStart = document.getElementById("hinicio").value;
-    let takeTimeEnd = document.getElementById("hfin").value;
-
-    let info_form = {
-      "T_NOM_EMPL":"paty",
-      "T_INICIO": takeDateStart,
-      "T_FIN": takeDateEnd,
-      "H_INICIO": takeTimeStart,
-      "H_FIN": takeTimeEnd
-     };
-    
-
-     $.ajax({
-      type: "POST",
-      url: 'https://backendappapi.us-south.cf.appdomain.cloud/save',
-      data: info_form,
-      // dataType: dataType,
-      success: function (response) {
-         console(response); 
-     }
-     
-    });
-
-    console.log(takeDateStart , takeDateEnd , takeTimeStart , takeTimeEnd)
-   });
-  
-
-  
-  /*
-  form 
-  parametros :
-  1 nombre  = ducument.getById("ID DEL INPUT ").VALUE;
-  2 fecha i
-  3 fecha f
-  4 horario i
-  5  horario f
+  console.log(takeDateStart)
+});
 
 
-   VAR OBJECT_FOMR = {};
-   OBJECT_FOMR = {
 
-      nombre: NOMBRE_.....
-   }
-   console.log
-  */ 
