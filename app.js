@@ -8,13 +8,22 @@ var results = $.ajax({
 }).responseJSON;
         
 
+function getName(e,row) {
+ console.log("results :", results);
+ // ver de donde acamos esto
+ //console.log("empleado",row.getData().T_NOM_EMPL); 
+}
+
+getName();
 //Muestra el detalle de los empleados en un modal
 function showInfo(e, row){
+
+    console.log("row",row);
         $('#mtitle').html('<b>Detalles empleado: <i>' + row.getData().T_NOM_EMPL +'</i></b>');
-        
+        console.log("row.getData()",row.getData());
         var keys = Object.keys(row.getData());
         var values = Object.values(row.getData());
-        
+         console.log("values en  showInfo",values);
         var text="";
         for (var i=0; i< keys.length; i++){
             if (keys[i]=="_children" || keys[i]=="id"){
@@ -115,38 +124,42 @@ var table = new Tabulator("#example-table", {
 
   // Permite third-party libraries para bootstrap4
   $.fn.modal.Constructor.prototype._enforceFocus = function() {};
-
-
-  var info_form = {
-      a:"hola"
-  }
-
-  $.ajax({
-    type: "POST",
-    url: 'https://backendappapi.us-south.cf.appdomain.cloud/save' ,
-    data: info_form,
-    // dataType: dataType,
-    success: function (response) {
-        console.log (response);
-   }
-   
-  });
-   
   
-   let getDate = document.getElementById("submit")
+   let getDate = document.getElementById("submit");
 
    getDate.addEventListener('click', (evt) => {
-    let takeDateStart= document.getElementById("finicio").value
-    let takeDateEnd = document.getElementById("ffin").value
-    let takeTimeStart = document.getElementById("hinicio").value
-    let takeTimeEnd = document.getElementById("hfin").value
     evt.preventDefault();
+
+    let takeDateStart= document.getElementById("finicio").value;
+    let takeDateEnd = document.getElementById("ffin").value;
+    let takeTimeStart = document.getElementById("hinicio").value;
+    let takeTimeEnd = document.getElementById("hfin").value;
+
+    let info_form = {
+      "T_NOM_EMPL":"paty",
+      "T_INICIO": takeDateStart,
+      "T_FIN": takeDateEnd,
+      "H_INICIO": takeTimeStart,
+      "H_FIN": takeTimeEnd
+     };
+    
+
+     $.ajax({
+      type: "POST",
+      url: 'https://backendappapi.us-south.cf.appdomain.cloud/save',
+      data: info_form,
+      // dataType: dataType,
+      success: function (response) {
+         console(response); 
+     }
+     
+    });
+
     console.log(takeDateStart , takeDateEnd , takeTimeStart , takeTimeEnd)
    });
   
 
-
-
+  
   /*
   form 
   parametros :
