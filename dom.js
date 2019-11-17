@@ -12,25 +12,48 @@ accion usuario
                 | fecha f  ok
                 | horario i ok
                 | horario f ok
-
-
 3. el usuario hace click en btn submit se envia a la base de datos 
-                | fechas 
-                | horarios 
+                | fechas  ok
+                | horarios  ok 
                 | coincidientes con el nombre del empleado
-   
+
+4. reorganizar :
+
+// AXIONES
+- buscar si el empleado de showInfo  identico a SETtIMES
+- RECARGAR la tabla , es decir tengo de hacer mi peticion ajax
+- antes y despues de del btn subnit 
+-tabla recargar tabla --(lograr recargar nombre y turno)
+
+_ obtner un mensaje de que si hay cambios en la base de datos
+  que existen cambios en la tabla 
+
+  una vez valide esto si hay menjsae nuevo se muetra la fecha y hora
+  sino me mantiene el mensaje con btn modificar -editar
+
+  // 
+- ANTES DE evento clic se muestra mensaje "ingresa,modifia datos - sin informacion o podria agregar un mensaje secundario como span 
++ placeholder mayor info
+
+luego de volver a recargar lo datos }
+validar 
+el valor del input 
+ si el input tiene mensaje de : ingresa datos
+ se mantiene el mensaje
+y 
+     
+    
  */
 
-//Trae los empleados
+//DATOS
 var results = $.ajax({
   url: 'https://backendappapi.us-south.cf.appdomain.cloud/listaempleadosgts',
   type: 'GET',
   async: false,
   dataType: 'json',
-}).responseJSON;
+}).responseJSON;console.log("result :" , results);
 
-console.log("result :" , results);
-//Muestra el detalle de los empleados en un modal
+//name empleado + insersion tabla for
 function showInfo(e, row) {
   $('#mtitle').html('<b>Detalles empleado: <i>' + row.getData().T_NOM_EMPL + '</i></b>');
 
@@ -51,40 +74,26 @@ function showInfo(e, row) {
   $('#masInformacion').modal('show');
 }
 
-//Modifica modal de turnos
+// funcion cuando se desplega tabla turnos 
 const  setTimes = (e, cell) => {
 
-  let  objData = cell.getData(); //Obtiene los datos de la celda
-  let nameprob = objData.T_NOM_EMPL;
-  console.log(objData)
-  console.log(nameprob);
-
-  //Date
-  //INICIO: Esto no se usa, pero lo deje porque podria servir para despues
-  //var curr = new Date; // get current date
-  //var first = curr.getDate() - curr.getDay() +1; // First day is the day of the month - the day of the week
-  //var last = first + 6; // last day is the first day + 6
-
-  //var firstday = new Date(curr.setDate(first)).toString();
-  //var lastday = new Date(curr.setDate(last)).toString();
-
-  //console.log(firstday); console.log(lastday);
-  //console.log("cell",cell.getValue() );
-  //cell.setValue(!cell.getValue());
-  //FIN
+  let  objData = cell.getData();
+  let nameprob = objData.T_NOM_EMPL;  console.log(nameprob);
 
   //Modal
-  $('#masInformacion').modal('hide');
-  $('#ttitle').html('<b>Configuración turno empleado: <i>' + objData.T_NOM_EMPL + '</i></b>');
-  //$('#tfooter').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>'
-  //   +'<input type="submit"  class="btn btn-primary" value="Submit" id="submit"');    
+  const modalCDataTimes = () => {
+    $('#masInformacion').modal('hide');
+    $('#ttitle').html('<b>Configuración turno empleado: <i>' + objData.T_NOM_EMPL + '</i></b>');
+    //$('#tfooter').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>'
+    //   +'<input type="submit"  class="btn btn-primary" value="Submit" id="submit"');    
+  
+    $('#turnos').modal('show');
+  };
+// evento click en enviar data
+  const  evClick =()=>{
+    let getDate = document.getElementById("submit");
 
-  $('#turnos').modal('show');
-
-
-  let getDate = document.getElementById("submit");
-
-  getDate.addEventListener('click', (evt) => {
+   getDate.addEventListener('click', (evt) => {
     
   
     evt.preventDefault();
@@ -118,12 +127,23 @@ const  setTimes = (e, cell) => {
   
     console.log(takeDateStart, takeDateEnd, takeTimeStart, takeTimeEnd)
   });
+    
+  }
   
-
+  evClick();
+  modalCDataTimes(); 
 }
 // crea icono de edicion  en turno
 let printIcon = function(cell, formatterParams){ 
   return "Ingresa turno  &nbsp; <i class='fa fa-edit'></i>";
+};
+
+//Crea la tabla
+// crea icono de edicion  en turno
+let printIcon = function(cell, formatterParams){ 
+   let a = "Ingresa turno  &nbsp; <i class='fa fa-edit'></i>";
+   
+  return a;
 };
 
 //Crea la tabla
@@ -154,6 +174,22 @@ var table = new Tabulator("#example-table", {
 
 });
 
+
+//?
+// Evento para lanzar copia a traves del modal
+$(function () {
+
+  $(document).on("click", "#copiar", function (event) {
+    copyToClipboard();
+  });
+});
+
+
+
+
+//     Luego..
+//
+//
 // Copia el body del modal de los detalles del empleado
 function copyToClipboard() {
 
@@ -173,17 +209,56 @@ function copyToClipboard() {
   document.execCommand("copy");
   $temp.remove();
 }
-
-// Evento para lanzar copia a traves del modal
-$(function () {
-
-  $(document).on("click", "#copiar", function (event) {
-    copyToClipboard();
-  });
-});
-
 // Permite third-party libraries para bootstrap4
 $.fn.modal.Constructor.prototype._enforceFocus = function () { };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// codigo caro para show info
+    //Date
+  //INICIO: Esto no se usa, pero lo deje porque podria servir para despues
+  //var curr = new Date; // get current date
+  //var first = curr.getDate() - curr.getDay() +1; // First day is the day of the month - the day of the week
+  //var last = first + 6; // last day is the first day + 6
+
+  //var firstday = new Date(curr.setDate(first)).toString();
+  //var lastday = new Date(curr.setDate(last)).toString();
+
+  //console.log(firstday); console.log(lastday);
+  //console.log("cell",cell.getValue() );
+  //cell.setValue(!cell.getValue());
+  //FIN
+
+
+
+
+
+
+
+
+
+
+
 
 
 
