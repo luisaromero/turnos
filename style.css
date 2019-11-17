@@ -1,6 +1,9 @@
    *{
     font-family: 'IBM Plex Sans', sans-serif;
    }
+   #hola{
+       background: green;
+   }
   .navbar{
         background-image: linear-gradient(to right,#051243,#0530ad);
     }

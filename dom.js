@@ -56,6 +56,7 @@ const  setTimes = (e, cell) => {
 
   let  objData = cell.getData(); //Obtiene los datos de la celda
   let nameprob = objData.T_NOM_EMPL;
+  console.log(objData)
   console.log(nameprob);
 
   //Date
@@ -101,6 +102,7 @@ const  setTimes = (e, cell) => {
       "H_INICIO": takeTimeStart,
       "H_FIN": takeTimeEnd
     };
+    console.log(info_form.T_INICIO)
   
   
     $.ajax({
@@ -119,6 +121,10 @@ const  setTimes = (e, cell) => {
   
 
 }
+// crea icono de edicion  en turno
+let printIcon = function(cell, formatterParams){ 
+  return "Ingresa turno  &nbsp; <i class='fa fa-edit'></i>";
+};
 
 //Crea la tabla
 var table = new Tabulator("#example-table", {
@@ -135,13 +141,15 @@ var table = new Tabulator("#example-table", {
 
   columns: [
     { title: "Nombre", field: "T_NOM_EMPL", responsive: 0, cellClick: function (e, cell) { showInfo(e, cell) } }, //never hide this column
-    { title: "Teléfono", field: "T_TEL_EMPL", cellClick: function (e, cell) { showInfo(e, cell) } },
-    { title: "Correo", field: "T_CORREO_EMPL", width: 300, cellClick: function (e, cell) { showInfo(e, cell) } },
-    {
-      title: "Turno", field: "TURNO", align: "center", formatter: "tickCross", responsive: 1, cellClick: function (e, cell) {
-        setTimes(e, cell)
-      }
-    },
+    { title: "Teléfono", field: "T_TEL_EMPL", align:"center" ,cellClick: function (e, cell) { showInfo(e, cell) } },
+    { title: "Correo", field: "T_CORREO_EMPL", align:"center" , width: 300, cellClick: function (e, cell) { showInfo(e, cell) } },
+    {title: "Turno", field: "TURNO"  ,formatter:printIcon, width:250, align:"center", cellClick:function(e, cell){ setTimes(e, cell)},
+  }
+    // { title: "Turno", field: "TURNO", align: "center", formatter: , responsive: 1, 
+    // cellClick: function (e, cell) {
+    //     setTimes(e, cell)
+    //   }
+    // },
   ],
 
 });
