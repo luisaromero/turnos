@@ -111,6 +111,7 @@ const  setTimes = (e, cell) => {
       "H_INICIO": takeTimeStart,
       "H_FIN": takeTimeEnd
     };
+    console.log(info_form.T_INICIO)
   
   
     $.ajax({
@@ -132,6 +133,10 @@ const  setTimes = (e, cell) => {
   evClick();
   modalCDataTimes(); 
 }
+// crea icono de edicion  en turno
+let printIcon = function(cell, formatterParams){ 
+  return "Ingresa turno  &nbsp; <i class='fa fa-edit'></i>";
+};
 
 //Crea la tabla
 // crea icono de edicion  en turno

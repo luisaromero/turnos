@@ -1,3 +1,4 @@
+
 /*CLASIFICAR ESTO! pendiente */
 .navbar {background-image: linear-gradient(to right, #051243, #0530ad);}
 
@@ -34,3 +35,78 @@
     padding-right: 1rem;
     background-color: lightgray;
 }
+
+
+/*  L U I S A 
+   *{
+    font-family: 'IBM Plex Sans', sans-serif;
+   }
+   #hola{
+       background: green;
+   }
+  .navbar{
+        background-image: linear-gradient(to right,#051243,#0530ad);
+    }
+    
+    .modal-header{
+        color: white;
+        background-color: #191970;
+    }
+    
+    .modal-dialog{
+        overflow-y: initial
+    }
+    
+    
+    .close{
+        color: whitesmoke;
+    }
+    
+    hr.style1{
+        border-top: 1px solid #8c8b8b;
+    }
+    
+    .hide
+    {
+    display:none;
+    }
+    
+    .option{
+    width:100%;
+    }
+    
+    .bd-example-modal-lg .modal-dialog{
+        display: table;
+        position: relative;
+        margin: 0 auto;
+        top: calc(50% - 24px);
+    }
+    
+    .bd-example-modal-lg .modal-dialog .modal-content{
+        background-color: transparent;
+        border: none;
+    }
+    
+    
+    #table {
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+    
+    #cont-table{
+        padding-top: 2rem;
+    }
+    
+    #finicio, #ffin{
+       
+        width: 10rem;
+        
+    }
+    
+    .input-daterange .input-group-addon{
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: lightgray;
+    }
+>>>>>>> f002d0dfa4022541cb762de9003f15e80a24b216
+*/
