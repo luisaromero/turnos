@@ -134,9 +134,9 @@ const  setTimes = (e, cell) => {
   modalCDataTimes(); 
 }
 // crea icono de edicion  en turno
-let printIcon = function(cell, formatterParams){ 
-  return "Ingresa turno  &nbsp; <i class='fa fa-edit'></i>";
-};
+// let printIcon = function(cell, formatterParams){ 
+//   return "Ingresa turno  &nbsp; <i class='fa fa-edit'></i>";
+// };
 
 //Crea la tabla
 // crea icono de edicion  en turno

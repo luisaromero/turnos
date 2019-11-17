@@ -37,7 +37,48 @@
 }
 
 
-/*  L U I S A 
+
+  /* NAVBAR */  
+
+
+#side-navbar {
+    background-color: black;
+    height: 100%;
+    width: 17%;
+    position: fixed;
+  }
+  
+   #logo {
+      display: block;
+      margin: 30px auto 50px auto;
+   }
+
+
+  #side-navbar img{
+      width:136px
+  }
+  #menu {
+      list-style: none;
+      padding-left: 22px;
+  }
+  
+  #menu li:not(:last-child) {
+      margin-bottom: 30px;
+  }
+  #menu li a {
+      text-decoration: none;
+      color: white;
+      display: flex;  
+  justify-content: space-around; 
+  }
+  
+  
+  
+  
+  
+
+/*  L U I S A NAV
+
    *{
     font-family: 'IBM Plex Sans', sans-serif;
    }
