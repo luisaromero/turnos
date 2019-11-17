@@ -1,114 +1,146 @@
-<!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <title>Turnos GTS</title>
+	<title>Turnos GTS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html">
 	<meta charset="utf-8">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+	<script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.4.3/dist/js/tabulator.min.js"></script>
 
-    <link href="https://unpkg.com/tabulator-tables@4.4.3/dist/css/tabulator.min.css" rel="stylesheet">
-    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.4.3/dist/js/tabulator.min.js"></script>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css">
-    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="style.css">
+	<script type='text/javascript'
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
 
-   
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css">
+	<link href="https://unpkg.com/tabulator-tables@4.4.3/dist/css/tabulator.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+
+
 </head>
 
-<body>    
-	<!-- NavBar -->
-	<nav class="navbar navbar-dark">
-		<a class="navbar-brand" href="" style="color:#edf4ff">
-			<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" width="65" height="30" class="d-inline-block align-top" alt="">
-			Turnos GTS
-		</a>
-		<div>
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="https://cracrr.mybluemix.net/base"><i class="fa fa-sign-out" style="color:#c9deff; font-size:1.35rem;"></i> Automatization </a></li>
-            </ul>
-		</div>
-	</nav> 
-	
-	<div class="container-fluid" id="cont-table">
-        <div id="example-table" ></div>
-    </div>
-    
-    
-    <!-- Modal mas informacion onClick -->
-    <div class="modal fade" id="masInformacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="mtitle"></h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+<body>
+
+
+	<div class="root">
+		<div class="row">
+
+			<!-- HEADERs-->
+			<div class="col-12">
+					<header>
+							<nav class="navbar navbar-dark">
+								<a class="navbar-brand" href="" style="color:#edf4ff">
+									<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" width="65"
+										height="30" class="d-inline-block align-top" alt="">
+									Turnos GTS
+								</a>
+								<div>
+									<ul class="navbar-nav">
+										<li class="nav-item"><a class="nav-link" href="https://cracrr.mybluemix.net/base"><i
+													class="fa fa-sign-out" style="color:#c9deff; font-size:1.35rem;"></i>
+												Automatization
+											</a></li>
+									</ul>
+								</div>
+							</nav>
+		
+						</header>
+			</div>
+
+            <!-- CONTENDEDOR TABLA CON ID PARA TABLA-->
+			<div class="col-11 container">
+				<!-- CAMBIO:  header - NavBar -->
+				<div class="" id="cont-table">
+					<div id="example-table"></div>
 				</div>
-				<div class="modal-body" id="mbody">
-			
+
+				<!-- Modal mas informacion onClick -->
+				<div class="modal fade" id="masInformacion" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="mtitle"></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body" id="mbody">
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+								<button id="copiar" type="button" class="btn btn-primary">Copiar</button>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					<button id="copiar" type="button" class="btn btn-primary">Copiar</button>
+
+				<div class="modal fade" id="turnos" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="ttitle"></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body" id="tbody">
+								<!-- FORMULARIO TURNOS - HORAS -->
+								<div id="formularioTurno">
+									<form method="post" action="https://backendappapi.us-south.cf.appdomain.cloud/save"
+										ajax="true">
+										<!-- <form>-->
+
+										<label for="fecha">Fecha:</label>
+										<div class="input-group input-daterange" id="fecha">
+											<input type="date" class="form-control" id="finicio">
+											<div class="input-group-addon">al</div>
+											<input type="date" class="form-control" id="ffin">
+										</div>
+										<label for="horario">Horario:</label>
+										<div class="input-group input-daterange" id="horario">
+											<input type="time" class="form-control" id="hinicio">
+											<div class="input-group-addon">a</div>
+											<input type="time" class="form-control" id="hfin">
+										</div>
+
+										<!-- END FORMULARIO TURNOS -->
+
+								</div>
+
+								<div class="modal-footer" id="tfooter">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal"
+										id="close">Cerrar</button>
+									<input type="submit" class="btn btn-primary" value="Submit" id="submit">
+								</div>
+								<!-- </form> -->
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
+
 		</div>
+
+
 	</div>
 
 
-    <div class="modal fade" id="turnos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="ttitle"></h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" id="tbody">
-				    <!-- FORMULARIO TURNOS - HORAS -->
-                    <div id="formularioTurno">
-                     <!-- <form method="post" action="https://backendappapi.us-south.cf.appdomain.cloud/save" ajax="true"> -->
-                       <!-- <form>-->
-                      
-                        <label for="fecha">Fecha:</label>
-                      <div class="input-group input-daterange" id="fecha">
-                        <input type="date" class="form-control" id="finicio">
-                        <div class="input-group-addon">al</div>
-                        <input type="date" class="form-control" id="ffin">
-                    </div>
-                    <label for="horario">Horario:</label>
-                      <div class="input-group input-daterange" id="horario">
-                        <input type="time" class="form-control" id="hinicio">
-                        <div class="input-group-addon">a</div>
-                        <input type="time" class="form-control" id="hfin">
-                    </div>
-                    
-                    <!-- END FORMULARIO TURNOS -->
 
-				</div>
-				
-				<div class="modal-footer" id="tfooter">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Cerrar</button>
-				    <input type="submit"  class="btn btn-primary" value="Submit" id="submit" >
-				</div>
-				    <!-- </form> -->
-				    </div>
-			</div>
-		</div>
-    </div>
-    
-    <script src="app.js"></script>
+
+
+
+	<script src="dom.js"></script>
 </body>
 
 </html>
