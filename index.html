@@ -41,21 +41,22 @@
 			<div id="nav" class="col-2">
 				<div class="row">
 					<div class="col-12">
-						<!-- AQUI VA EL SLIDER--> 
-						
+						<!-- AQUI VA EL SLIDER-->
+
 						<div id="side-navbar">
-								<a href="#"><img id="logo" src="http://www.pngall.com/wp-content/uploads/2016/03/IBM-White-Logo-PNG.png" > </a>	 
-							   <ul id="menu">
-								    <li ><a href="#">SEARCH <i class="fa fa-search"></i></a></li>
-								   <li><a href="#">HOME <i class="fa fa-home fa-lg"></i></a></li>
-								   <li><a href="#">LOGIN <i class="fa fa-user fa-lg"></i></a></li> 
-							   </ul>
-								   <div class="sns">  
-									  <a href="#"> </a>
-									   <a href="#"> </a>
-								   </div>      
-							 </div>
-				 
+							<a href="#"><img id="logo"
+									src="http://www.pngall.com/wp-content/uploads/2016/03/IBM-White-Logo-PNG.png"> </a>
+							<ul id="menu">
+								<li><a href="#">SEARCH <i class="fa fa-search"></i></a></li>
+								<li><a href="#">HOME <i class="fa fa-home fa-lg"></i></a></li>
+								<li><a href="#">LOGIN <i class="fa fa-user fa-lg"></i></a></li>
+							</ul>
+							<div class="sns">
+								<a href="#"> </a>
+								<a href="#"> </a>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>
@@ -67,7 +68,10 @@
 					<!-- HEADERs-->
 					<div class="col-12">
 						<header>
-								<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark" id="hamburguerMenu">
+							<!--titulo -->
+                            <h1>TURNOS GTS</h1>
+							<!--  menor a 2000  px pantalla -->
+							<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark" id="hamburguerMenu">
 										<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 											aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 											<span class="navbar-toggler-icon"></span>
@@ -88,91 +92,89 @@
 													aria-label="Search">
 												<button id="btn_search" class="btn btn-outline-success my-2 my-sm-0" type="button">Buscar</button>
 											</form> -->
-										</div>
-									</nav>
+					</div>
+					</nav> 
 
-						</header>
+					</header>
+				</div>
+
+				<!-- CONTENDEDOR TABLA CON ID PARA TABLA-->
+				<div class="col-11 container mt-5">
+					<!-- CAMBIO:  header - NavBar -->
+					<div class="" id="cont-table">
+						<div id="example-table"></div>
 					</div>
 
-					<!-- CONTENDEDOR TABLA CON ID PARA TABLA-->
-					<div class="col-11 container mt-5">
-						<!-- CAMBIO:  header - NavBar -->
-						<div class="" id="cont-table">
-							<div id="example-table"></div>
-						</div>
-
-						<!-- Modal mas informacion onClick -->
-						<div class="modal fade" id="masInformacion" tabindex="-1" role="dialog"
-							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-							<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="mtitle"></h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body" id="mbody">
-
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">Cerrar</button>
-										<button id="copiar" type="button" class="btn btn-primary">Copiar</button>
-									</div>
+					<!-- Modal mas informacion onClick -->
+					<div class="modal fade" id="masInformacion" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="mtitle"></h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
 								</div>
-							</div>
-						</div>
-
-						<div class="modal fade" id="turnos" tabindex="-1" role="dialog"
-							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-							<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="ttitle"></h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body" id="tbody">
-										<!-- FORMULARIO TURNOS - HORAS -->
-										<div id="formularioTurno">
-											<form method="post"
-												action="https://backendappapi.us-south.cf.appdomain.cloud/save"
-												ajax="true">
-												<!-- <form>-->
-
-												<label for="fecha">Fecha:</label>
-												<div class="input-group input-daterange" id="fecha">
-													<input type="date" class="form-control" id="finicio">
-													<div class="input-group-addon">al</div>
-													<input type="date" class="form-control" id="ffin">
-												</div>
-												<label for="horario">Horario:</label>
-												<div class="input-group input-daterange" id="horario">
-													<input type="time" class="form-control" id="hinicio">
-													<div class="input-group-addon">a</div>
-													<input type="time" class="form-control" id="hfin">
-												</div>
-
-												<!-- END FORMULARIO TURNOS -->
+								<div class="modal-body" id="mbody">
 
 								</div>
-								<div class="modal-footer" id="tfooter">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal"
-										id="close">Cerrar</button>
-									<input type="submit" class="btn btn-primary" value="Enviar" id="submit">
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+									<button id="copiar" type="button" class="btn btn-primary">Copiar</button>
 								</div>
 							</div>
 						</div>
 					</div>
 
+					<div class="modal fade" id="turnos" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="ttitle"></h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body" id="tbody">
+									<!-- FORMULARIO TURNOS - HORAS -->
+									<div id="formularioTurno">
+										<form method="post"
+											action="https://backendappapi.us-south.cf.appdomain.cloud/save" ajax="true">
+											<!-- <form>-->
+
+											<label for="fecha">Fecha:</label>
+											<div class="input-group input-daterange" id="fecha">
+												<input type="date" class="form-control" id="finicio">
+												<div class="input-group-addon">al</div>
+												<input type="date" class="form-control" id="ffin">
+											</div>
+											<label for="horario">Horario:</label>
+											<div class="input-group input-daterange" id="horario">
+												<input type="time" class="form-control" id="hinicio">
+												<div class="input-group-addon">a</div>
+												<input type="time" class="form-control" id="hfin">
+											</div>
+
+											<!-- END FORMULARIO TURNOS -->
+
+									</div>
+									<div class="modal-footer" id="tfooter">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal"
+											id="close">Cerrar</button>
+										<input type="submit" class="btn btn-primary" value="Enviar" id="submit">
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<script src="dom.js"></script>
+		<script src="dom.js"></script>
 </body>
 
 </html>

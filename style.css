@@ -95,8 +95,11 @@ display: none;
   }
   
   
-  
-  
+/*   EDICION INCLUCION DE ELEMETOS*/
+  h1{
+      text-align: center;
+      color: #007F96;
+  }
 
 /*  L U I S A NAV
 
