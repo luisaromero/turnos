@@ -149,7 +149,6 @@ let printIcon = function(cell, formatterParams){
 //Crea la tabla
 var table = new Tabulator("#example-table", {
   height: "250px",
-
   layout: "fitColumns",
   responsiveLayout: "hide",
   data: results,

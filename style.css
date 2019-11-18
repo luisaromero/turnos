@@ -39,8 +39,13 @@
     background-color: lightgray;
 }
 
-
-
+.tabulator-row.tabulator-group {
+    background: rgba(233, 230, 230, 0.966);
+    color: teal;
+}
+.tabulator-row.tabulator-group span {
+    color:black
+}
   /* NAVBAR */  
  
   #hamburguerMenu{
