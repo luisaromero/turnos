@@ -120,7 +120,7 @@ let printIcon = function (cell, formatterParams) {
 };
 
 var table = new Tabulator("#example-table", {
-  height: "250px",
+  height: "340px",
   layout: "fitColumns",
   responsiveLayout: "hide",
   data: results,
