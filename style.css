@@ -1,5 +1,8 @@
 
 /*CLASIFICAR ESTO! pendiente */
+*{
+    font-family: 'IBM Plex Sans', sans-serif;
+   }
 .navbar {background-image: linear-gradient(to right, #051243, #0530ad);}
 
 .modal-header {color: white; background-color: #191970;}
@@ -36,14 +39,74 @@
     background-color: lightgray;
 }
 
+.tabulator-row.tabulator-group {
+    background: rgba(233, 230, 230, 0.966);
+    color: teal;
+}
+.tabulator-row.tabulator-group span {
+    color:black
+}
+  /* NAVBAR */  
+ 
+  #hamburguerMenu{
+display: none;
+  }
+#side-navbar {
+    background-color: black;
+    height: 100%;
+    width: 17%;
+    position: fixed;
+  }
+  
+   #logo {
+      display: block;
+      margin: 50px auto 50px auto;  
+   }
 
-/*  L U I S A 
+  #side-navbar img{
+      width:50%
+  }
+  #menu {
+      list-style: none;
+      padding-left: 22px;
+  }
+  
+  #menu li:not(:last-child) {
+      margin-bottom: 30px;
+  }
+  #menu li a {
+      text-decoration: none;
+      color: white;
+      display: flex;  
+  justify-content: space-around; 
+
+  }
+  #menu li a:hover{
+      color:gray;
+  }
+  @media screen and (max-width: 800px) {
+    #nav{
+      display: none;
+    }
+    #hamburguerMenu{
+        display: block;
+        color:white;
+    }
+  }
+  
+  
+/*   EDICION INCLUCION DE ELEMETOS*/
+  h1{
+      text-align: center;
+      color: #007F96;
+  }
+
+/*  L U I S A NAV
+
    *{
     font-family: 'IBM Plex Sans', sans-serif;
    }
-   #hola{
-       background: green;
-   }
+  
   .navbar{
         background-image: linear-gradient(to right,#051243,#0530ad);
     }

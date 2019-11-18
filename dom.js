@@ -80,7 +80,6 @@ const setTimes = (e, cell) => {
       };
       console.log(info_form.T_INICIO)
 
-
       $.ajax({
         type: "POST",
         url: 'https://backendappapi.us-south.cf.appdomain.cloud/save',
@@ -92,9 +91,6 @@ const setTimes = (e, cell) => {
       });
 
       console.log(takeDateStart, takeDateEnd, takeTimeStart, takeTimeEnd)
-
-
-
 
 
       var t = $.ajax({
@@ -112,20 +108,10 @@ const setTimes = (e, cell) => {
   evClick();
   modalCDataTimes();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// crea icono de edicion  en turno
+// let printIcon = function(cell, formatterParams){ 
+//   return "Ingresa turno  &nbsp; <i class='fa fa-edit'></i>";
+// };
 
 //Crea la tabla
 // crea icono de edicion  en turno
