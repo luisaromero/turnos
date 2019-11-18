@@ -1,13 +1,13 @@
-//DATOS
+// llamada de DATOS
 
-var results = $.ajax({
+const results = $.ajax({
   url: 'https://backendappapi.us-south.cf.appdomain.cloud/listaempleadosgts',
   type: 'GET',
   async: false,
   dataType: 'json',
 }).responseJSON; console.log("result :", results);
 
-var dbturnos = $.ajax({
+const dbturnos = $.ajax({
   url: 'https://backendappapi.us-south.cf.appdomain.cloud/turnos',
   type: 'GET',
   async: false,
@@ -15,14 +15,21 @@ var dbturnos = $.ajax({
 }).responseJSON; console.log("turnos td inicial:", dbturnos);
 //name empleado + insersion tabla for
 
-var dbjoin = $.ajax({
+const dbjoin = $.ajax({
   url: 'https://backendappapi.us-south.cf.appdomain.cloud/turnosbyempleado',
   type: 'GET',
   async: false,
   dataType: 'json',
 }).responseJSON; console.log("turnos td inicial:", dbjoin);
 
-function showInfo(e, row) {
+
+
+
+
+
+
+// FUNCIONES       internas llamadas en cada columna de la tabla insertada 
+const showInfo = (e, row) => {
   $('#mtitle').html('<b>Detalles empleado: <i>' + row.getData().T_NOM_EMPL + '</i></b>');
 
   var keys = Object.keys(row.getData());
@@ -42,12 +49,14 @@ function showInfo(e, row) {
   $('#masInformacion').modal('show');
 }
 
-// funcion cuando se desplega tabla turnos 
+// funcion cuando se desplega tabla turnos                            // pendiente separar funciones usar PROMISSE 
 const setTimes = (e, cell) => {
 
-  let objData = cell.getData();
-  console.log("click :",objData)
-  let nameprob = objData.T_NOM_EMPL; console.log(nameprob);
+
+  let objData = cell.getData(); console.log("click :", objData); // TOMANDO TODA LA DATA OBJECT BIG 
+  let nameprob = objData.T_NOM_EMPL; console.log("nameprob :" +nameprob);      // TOMANDO EL NOMBRE DEL USUARIO _ EMPLEADO ELEGIDO 
+
+
 
   //Modal
   const modalCDataTimes = () => {
@@ -56,8 +65,44 @@ const setTimes = (e, cell) => {
     //$('#tfooter').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>'
     //   +'<input type="submit"  class="btn btn-primary" value="Submit" id="submit"');    
 
-    $('#turnos').modal('show');
+    // CONDICIONAR SALIDA Y CONTENIDO DEL MODAL
+
+    const contentModal  =()=> {     // console.log("dentro del condicionamiento del modal de turnos")
+      nameprob; results; dbturnos;
+       //console.log("en contetModal : "+ nameprob); //yes 
+
+      $('#shift_sn_RegistreInfo').modal('show');
+      $('#shift_wt_RegistreInfo').modal('show');
+
+      //console.log("dturnos dentro de contentModal " + JSON.stringify(dbturnos));
+
+      // busco el nombre del cliente
+      let bus = dbturnos.find( e => {
+        
+        if (e.T_NOM_EMPL === nameprob)  return true;
+        
+
+
+      });
+
+      console.log("busqueda :" +JSON.stringify(bus));
+
+     
+
+      // preg 1 =>  existe el nombre ?? si o no 
+      // obtengo el objeto de ese cliente desde la base de turnos 
+      // preg 2 =>  si los cambios de este cliente estan vacios o hay informacion registrada ? 
+      // si hay algun valor ingresado se muestra opc 1 
+      //                                 | opc 1  => muestro horario y fechas + btn de editar 
+
+      // si no hay valores en ningun campo se muestra opc 2
+      //                                 |  opc 2 => se muestra printIcon initial 
+    };
+    contentModal();  
   };
+
+
+
   // evento click en enviar data
   const evClick = () => {
     let getDate = document.getElementById("submit");
@@ -66,10 +111,7 @@ const setTimes = (e, cell) => {
       evt.preventDefault();
       console.log("dentro de evento click")
 
-      let takeDateStart = document.getElementById("finicio").value;
-      let takeDateEnd = document.getElementById("ffin").value;
-      let takeTimeStart = document.getElementById("hinicio").value;
-      let takeTimeEnd = document.getElementById("hfin").value;
+      let takeDateStart = document.getElementById("finicio").value; let takeDateEnd = document.getElementById("ffin").value; let takeTimeStart = document.getElementById("hinicio").value; let takeTimeEnd = document.getElementById("hfin").value;
 
       let info_form = {
         "T_NOM_EMPL": nameprob,
@@ -77,8 +119,7 @@ const setTimes = (e, cell) => {
         "T_FIN": takeDateEnd,
         "H_INICIO": takeTimeStart,
         "H_FIN": takeTimeEnd
-      };
-      console.log(info_form.T_INICIO)
+      };  //  console.log(info_form.T_INICIO)
 
       $.ajax({
         type: "POST",
@@ -88,30 +129,41 @@ const setTimes = (e, cell) => {
         success: function (response) {
           alert(response);
         }
-      });
-
-      console.log(takeDateStart, takeDateEnd, takeTimeStart, takeTimeEnd)
-
-
-      var t = $.ajax({
-        url: 'https://backendappapi.us-south.cf.appdomain.cloud/turnos',
-        type: 'GET',
-        async: false,
-        dataType: 'json',
-      }).responseJSON; 
-      
-      console.log("turnos:", t);
-
+      });//   console.log(takeDateStart, takeDateEnd, takeTimeStart, takeTimeEnd)
     });
 
+
   }
+
+  
   evClick();
   modalCDataTimes();
 }
-// crea icono de edicion  en turno
-// let printIcon = function(cell, formatterParams){ 
-//   return "Ingresa turno  &nbsp; <i class='fa fa-edit'></i>";
-// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Crea la tabla
 // crea icono de edicion  en turno
