@@ -46,8 +46,12 @@
 .tabulator-row.tabulator-group span {
     color:black
 }
-  /* NAVBAR */  
- 
+/* centra los titulos de las columnas */
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content {
+    text-align: center;
+}
+  /* NAVBAR */
+
   #hamburguerMenu{
 display: none;
   }
@@ -57,10 +61,10 @@ display: none;
     width: 17%;
     position: fixed;
   }
-  
+
    #logo {
       display: block;
-      margin: 50px auto 50px auto;  
+      margin: 50px auto 50px auto;
    }
 
   #side-navbar img{
@@ -70,15 +74,15 @@ display: none;
       list-style: none;
       padding-left: 22px;
   }
-  
+
   #menu li:not(:last-child) {
       margin-bottom: 30px;
   }
   #menu li a {
       text-decoration: none;
       color: white;
-      display: flex;  
-  justify-content: space-around; 
+      display: flex;
+  justify-content: space-around;
 
   }
   #menu li a:hover{
@@ -93,8 +97,8 @@ display: none;
         color:white;
     }
   }
-  
-  
+
+
 /*   EDICION INCLUCION DE ELEMETOS*/
   h1{
       text-align: center;
@@ -106,66 +110,66 @@ display: none;
    *{
     font-family: 'IBM Plex Sans', sans-serif;
    }
-  
+
   .navbar{
         background-image: linear-gradient(to right,#051243,#0530ad);
     }
-    
+
     .modal-header{
         color: white;
         background-color: #191970;
     }
-    
+
     .modal-dialog{
         overflow-y: initial
     }
-    
-    
+
+
     .close{
         color: whitesmoke;
     }
-    
+
     hr.style1{
         border-top: 1px solid #8c8b8b;
     }
-    
+
     .hide
     {
     display:none;
     }
-    
+
     .option{
     width:100%;
     }
-    
+
     .bd-example-modal-lg .modal-dialog{
         display: table;
         position: relative;
         margin: 0 auto;
         top: calc(50% - 24px);
     }
-    
+
     .bd-example-modal-lg .modal-dialog .modal-content{
         background-color: transparent;
         border: none;
     }
-    
-    
+
+
     #table {
         table-layout: fixed;
         word-wrap: break-word;
     }
-    
+
     #cont-table{
         padding-top: 2rem;
     }
-    
+
     #finicio, #ffin{
-       
+
         width: 10rem;
-        
+
     }
-    
+
     .input-daterange .input-group-addon{
         padding-left: 1rem;
         padding-right: 1rem;
