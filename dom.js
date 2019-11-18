@@ -172,7 +172,7 @@ let printIcon = function (cell, formatterParams) {
 };
 
 var table = new Tabulator("#example-table", {
-  height: "250px",
+  height: "340px",
   layout: "fitColumns",
   responsiveLayout: "hide",
   data: results,
@@ -180,6 +180,14 @@ var table = new Tabulator("#example-table", {
   dataTreeStartExpanded: true,
 
   groupBy: "T_TOR_EMPL",
+  groupHeader:function(value, count, data, group){
+    //value - the value all members of this group share//value - the value all members of this group share
+    //count - the number of rows in this group//count - the number of rows in this group
+    //data - an array of all the row data objects in this group//data - an array of all the row data objects in this group
+    //group - the group component for the group//group - the group component for the group
+
+    return value + "<span style='color:#d00; margin-left:10px;'></span>";
+},
   groupStartOpen: false,
 
   columns: [
