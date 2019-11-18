@@ -1,5 +1,8 @@
 
 /*CLASIFICAR ESTO! pendiente */
+*{
+    font-family: 'IBM Plex Sans', sans-serif;
+   }
 .navbar {background-image: linear-gradient(to right, #051243, #0530ad);}
 
 .modal-header {color: white; background-color: #191970;}
@@ -39,8 +42,10 @@
 
 
   /* NAVBAR */  
-
-
+ 
+  #hamburguerMenu{
+display: none;
+  }
 #side-navbar {
     background-color: black;
     height: 100%;
@@ -50,12 +55,11 @@
   
    #logo {
       display: block;
-      margin: 30px auto 50px auto;
+      margin: 50px auto 50px auto;  
    }
 
-
   #side-navbar img{
-      width:136px
+      width:50%
   }
   #menu {
       list-style: none;
@@ -70,8 +74,20 @@
       color: white;
       display: flex;  
   justify-content: space-around; 
+
   }
-  
+  #menu li a:hover{
+      color:gray;
+  }
+  @media screen and (max-width: 800px) {
+    #nav{
+      display: none;
+    }
+    #hamburguerMenu{
+        display: block;
+        color:white;
+    }
+  }
   
   
   
@@ -82,9 +98,7 @@
    *{
     font-family: 'IBM Plex Sans', sans-serif;
    }
-   #hola{
-       background: green;
-   }
+  
   .navbar{
         background-image: linear-gradient(to right,#051243,#0530ad);
     }

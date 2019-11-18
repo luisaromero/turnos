@@ -38,14 +38,15 @@
 		<div class="row">
 
 			<!-- navbar lateral pantalla administrador -->
-			<div class="col-2">
+			<div id="nav" class="col-2">
 				<div class="row">
 					<div class="col-12">
 						<!-- AQUI VA EL SLIDER--> 
+						
 						<div id="side-navbar">
-								<a href="#"><img id="logo" src="https://www.freepnglogos.com/uploads/ibm-logo-png/ibm-logo-corporate-leadership-training-monty-halls-ltd-23.png" > </a>	 
+								<a href="#"><img id="logo" src="http://www.pngall.com/wp-content/uploads/2016/03/IBM-White-Logo-PNG.png" > </a>	 
 							   <ul id="menu">
-								    <li ID="HI"><a href="#">SEARCH <i class="fa fa-search"></i></a></li>
+								    <li ><a href="#">SEARCH <i class="fa fa-search"></i></a></li>
 								   <li><a href="#">HOME <i class="fa fa-home fa-lg"></i></a></li>
 								   <li><a href="#">LOGIN <i class="fa fa-user fa-lg"></i></a></li> 
 							   </ul>
@@ -54,7 +55,7 @@
 									   <a href="#"> </a>
 								   </div>      
 							 </div>
-						   
+				 
 					</div>
 				</div>
 			</div>
@@ -66,22 +67,29 @@
 					<!-- HEADERs-->
 					<div class="col-12">
 						<header>
-							<nav class="navbar navbar-dark">
-								<a class="navbar-brand" href="" style="color:#edf4ff">
-									<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
-										width="65" height="30" class="d-inline-block align-top" alt="">
-									Turnos GTS
-								</a>
-								<div>
-									<ul class="navbar-nav">
-										<li class="nav-item"><a class="nav-link"
-												href="https://cracrr.mybluemix.net/base"><i class="fa fa-sign-out"
-													style="color:#c9deff; font-size:1.35rem;"></i>
-												Automatization
-											</a></li>
-									</ul>
-								</div>
-							</nav>
+								<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark" id="hamburguerMenu">
+										<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+											aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+											<span class="navbar-toggler-icon"></span>
+										</button>
+										<div class="collapse navbar-collapse" id="navbarSupportedContent">
+											<ul class="navbar-nav mr-auto">
+												<li class="nav-item active">
+													<a class="nav-link" href="" target="_blank">Home<span
+															class="sr-only"></span></a>
+												</li>
+												<li class="nav-item active">
+													<a class="nav-link" href="/"
+														target="_blank">Perfil<span class="sr-only"></span></a>
+												</li>
+											</ul>
+											<!-- <form class="form-inline my-2 my-lg-0">
+												<input id="search" class="form-control mr-sm-2" type="search" placeholder="Buscar Nombre"
+													aria-label="Search">
+												<button id="btn_search" class="btn btn-outline-success my-2 my-sm-0" type="button">Buscar</button>
+											</form> -->
+										</div>
+									</nav>
 
 						</header>
 					</div>
