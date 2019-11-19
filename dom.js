@@ -119,10 +119,11 @@ let printIcon = function (cell, formatterParams) {
   return "<span style='color:red'>Ingresa turno  &nbsp; <i class='fa fa-edit'></i></span>"
 };
 
+
 var table = new Tabulator("#example-table", {
-  height: "340px",
+  height: "330px",
   layout: "fitColumns",
-  responsiveLayout: "hide",
+  responsiveLayout:"hide",
   data: results,
   dataTree: true,
   dataTreeStartExpanded: true,
@@ -134,16 +135,15 @@ var table = new Tabulator("#example-table", {
     //data - an array of all the row data objects in this group//data - an array of all the row data objects in this group
     //group - the group component for the group//group - the group component for the group
 
-    return value + "<span style='color:#d00; margin-left:10px;'></span>";
+    return value ;
 },
   groupStartOpen: false,
 
   columns: [
-    { title: "Nombre", field: "T_NOM_EMPL", responsive: 0, cellClick: function (e, cell) { showInfo(e, cell) } }, //never hide this column
-    { title: "Teléfono", field: "T_TEL_EMPL", align: "center", cellClick: function (e, cell) { showInfo(e, cell) } },
-    { title: "Correo", field: "T_CORREO_EMPL", align: "center", width: 300, cellClick: function (e, cell) { showInfo(e, cell) } },
-    {
-      title: "Turno", field: "TURNO", formatter: printIcon, width: 250, align: "center", color: "red", cellClick: function (e, cell) { setTimes(e, cell) },
+    { title: "Nombre", field: "T_NOM_EMPL", responsive:0 ,width:230, cellClick: function (e, cell) { showInfo(e, cell) } }, //never hide this column
+    { title: "Teléfono", field: "T_TEL_EMPL" ,align: "center", minWidth:100, cellClick: function (e, cell) { showInfo(e, cell) } },
+    { title: "Correo", field: "T_CORREO_EMPL",  align: "center",minWidth:100,  cellClick: function (e, cell) { showInfo(e, cell) } },
+    { title: "Turno", field: "TURNO", responsive:0 ,width:200,formatter: printIcon,  align: "center", color: "red", cellClick: function (e, cell) { setTimes(e, cell) },
     }
     // { title: "Turno", field: "TURNO", align: "center", formatter: , responsive: 1, 
     // cellClick: function (e, cell) {
@@ -186,6 +186,8 @@ function copyToClipboard() {
 // Permite third-party libraries para bootstrap4
 $.fn.modal.Constructor.prototype._enforceFocus = function () { };
 
+
+// BUSCADOR
 
 
 
